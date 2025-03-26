@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Dating_App_Frontend/static/css/main.2dca0717.css",
+    "main.js": "/Dating_App_Frontend/static/js/main.b82865f5.js",
+    "index.html": "/Dating_App_Frontend/index.html",
+    "main.2dca0717.css.map": "/Dating_App_Frontend/static/css/main.2dca0717.css.map",
+    "main.b82865f5.js.map": "/Dating_App_Frontend/static/js/main.b82865f5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2dca0717.css",
+    "static/js/main.b82865f5.js"
+  ]
+}
