@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://akhil-vj.github.io/Dating_App_Frontend",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akhil-vj/Dating_App_Frontend.git"
+  },
   "dependencies": {
     "autoprefixer": "^10.4.14",
     "lucide-react": "^0.268.0",
