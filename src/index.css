@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
   body {
-    @apply bg-background text-gray-900;
+    @apply bg-gray-50 text-gray-900;
   }
 }
 
@@ -616,4 +619,840 @@ code {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Mobile-first responsive utilities */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
+
+.mobile-container {
+  @apply mx-auto max-w-2xl;
+}
+
+/* Update existing component styles */
+.profile-card {
+  @apply w-full max-w-sm mx-auto md:max-w-md;
+}
+
+.modal-content {
+  @apply w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 640px) {
+  .profile-grid {
+    @apply grid-cols-1 gap-4;
+  }
+
+  .swipe-buttons {
+    @apply fixed bottom-20 left-0 right-0 flex justify-center space-x-8 px-4 z-10;
+  }
+
+  .modal-content {
+    @apply mx-0 rounded-none h-full max-h-none;
+  }
+}
+
+/* Tablet and larger screens */
+@media (min-width: 641px) {
+  .profile-grid {
+    @apply grid-cols-2 md:grid-cols-3 gap-6;
+  }
+
+  .swipe-buttons {
+    @apply relative flex justify-center space-x-8 mt-4;
+  }
+}
+
+/* Chat typing animation */
+.typing-dots {
+  display: flex;
+  align-items: center;
+}
+
+.typing-dots span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: #888;
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: dot-pulse 1.5s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dot-pulse {
+  0%, 60%, 100% { transform: scale(1); opacity: 0.6; }
+  30% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Swipe animations */
+.swipe-right {
+  transform: translateX(120%) rotate(15deg);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.swipe-left {
+  transform: translateX(-120%) rotate(-15deg);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Enhanced scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+
+/* Card shadow effects */
+.profile-card-shadow {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.profile-card-shadow:hover {
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
+}
+
+/* Instagram-style chat bubbles */
+.rounded-2xl {
+  border-radius: 18px;
+}
+
+/* Animated typing indicator for Instagram-style */
+.typing-dots {
+  display: flex;
+  align-items: center;
+}
+
+.typing-dots span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #888;
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+
+/* Instagram-style pulse animation for call status */
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.animate-pulse {
+  animation: pulse 1.5s infinite;
+}
+
+.delay-100 {
+  animation-delay: 0.3s;
+}
+
+.delay-200 {
+  animation-delay: 0.6s;
+}
+
+/* Call UI fade-in animation */
+.call-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* WebRTC Video Call Styles */
+.call-screen {
+  transition: all 0.3s ease;
+}
+
+/* Call button pulse animation */
+.call-button-pulse {
+  animation: call-pulse 2s infinite;
+}
+
+@keyframes call-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Call timer style */
+.call-timer {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Call control buttons hover effect */
+.call-control-btn {
+  transition: all 0.2s ease;
+}
+
+.call-control-btn:hover {
+  transform: scale(1.05);
+}
+
+.call-control-btn:active {
+  transform: scale(0.95);
+}
+
+/* Video container aspect ratio */
+.video-container {
+  aspect-ratio: 16/9;
+}
+
+/* Video flip for selfie camera */
+.video-selfie {
+  transform: scaleX(-1);
+}
+
+/* Connection status indicator */
+.connection-status {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+
+/* WebRTC Video Call Improvements */
+.call-screen {
+  transition: all 0.3s ease;
+}
+
+/* Call control buttons with tactile feedback */
+.call-control-btn {
+  transition: all 0.15s ease;
+  transform: translateZ(0);
+}
+
+.call-control-btn:hover {
+  transform: translateZ(0) scale(1.05);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+}
+
+.call-control-btn:active {
+  transform: translateZ(0) scale(0.95);
+}
+
+/* Call timer with monospace numbers for better readability */
+.call-timer {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+/* Video container with better aspect ratio handling */
+.video-container {
+  object-fit: cover;
+  background-color: #000;
+}
+
+/* Mirror effect for selfie view */
+.video-selfie {
+  transform: scaleX(-1); /* Mirror horizontally for selfie view */
+}
+
+/* Connection status indicator with better visibility */
+.connection-status {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Pulse animation for end call button */
+.call-button-pulse {
+  animation: call-button-pulse 2s infinite;
+}
+
+@keyframes call-button-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Add these new animations and styles at the end of the file */
+
+/* WebRTC Call animations */
+@keyframes call-button-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+
+.call-button-pulse {
+  animation: call-button-pulse 2s infinite;
+}
+
+/* Toast notification fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* Call screen appearance animation */
+.call-fade-in {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Typing indicator animation */
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+}
+
+.typing-dots span {
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background-color: #888;
+  border-radius: 50%;
+  display: inline-block;
+  animation: typing-bounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes typing-bounce {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 
+  40% { 
+    transform: scale(1);
+  }
+}
+
+/* Profile card swipe animations */
+.swipe-right-exit {
+  transform: translateX(100%) rotate(20deg);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.swipe-left-exit {
+  transform: translateX(-100%) rotate(-20deg);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+/* Connection status indicator */
+.connection-status {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+/* Video selfie aspect handling */
+.video-selfie {
+  transform: scaleX(-1); /* Mirror selfie camera */
+}
+
+/* Message bubble animations */
+@keyframes message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat-message {
+  animation: message-appear 0.3s ease-out;
+}
+
+/* Audio visualizer for calls */
+.audio-visualizer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.audio-bar {
+  width: 3px;
+  height: 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 1px;
+}
+
+.audio-bar.active {
+  animation: audio-pulse 0.5s infinite alternate;
+}
+
+@keyframes audio-pulse {
+  0% {
+    height: 5px;
+  }
+  100% {
+    height: 15px;
+  }
+}
+
+/* Safe area adjustments */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .profile-grid {
+    @apply grid-cols-1 gap-4;
+  }
+
+  .swipe-buttons {
+    @apply fixed bottom-20 left-0 right-0 flex justify-center space-x-8 px-4 z-10;
+  }
+
+  .modal-content {
+    @apply mx-0 rounded-none h-full max-h-none;
+  }
+  
+  .touch-friendly-padding {
+    padding: 12px !important;
+  }
+  
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Enhanced User Experience Animations */
+
+/* Highlight animation for tour */
+.highlight-pulse {
+  position: relative;
+  z-index: 5;
+  animation: highlight-pulse 2s infinite;
+}
+
+@keyframes highlight-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(250, 204, 21, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
+  }
+}
+
+/* Better button feedback */
+.btn-feedback {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-feedback::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.5s;
+}
+
+.btn-feedback:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Focus styles for accessibility */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  @apply outline-none ring-2 ring-yellow-500 ring-offset-2;
+}
+
+/* Screen reader only utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Empty state styling */
+.empty-state {
+  @apply p-8 text-center bg-gray-50 rounded-lg border border-gray-200;
+}
+
+.empty-state-icon {
+  @apply mx-auto mb-4 text-gray-400;
+}
+
+/* Match animation */
+@keyframes pulse-match {
+  0% {
+    transform: scale(0.95);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(0.95);
+  }
+}
+
+.pulse-match {
+  animation: pulse-match 2s infinite;
+}
+
+/* Loading spinner */
+.spinner {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  background: #f6f7f8;
+  background-image: linear-gradient(
+    to right,
+    #f6f7f8 0%,
+    #edeef1 20%,
+    #f6f7f8 40%,
+    #f6f7f8 100%
+  );
+  background-size: 800px 104px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+/* Toast animation */
+@keyframes toast-slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast-enter {
+  animation: toast-slide-in-right 0.3s ease-out forwards;
+}
+
+/* Image loading states */
+.image-loading {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+}
+
+.image-loaded {
+  filter: blur(0);
+  transition: filter 0.3s ease;
+}
+
+/* Dark mode compatibility */
+.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+.dark .text-gray-900 {
+  @apply text-gray-100;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-200;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-400;
+}
+
+/* Fix for circular dependency */
+.dark .text-gray-500 {
+  color: #9CA3AF; /* This is the gray-500 color value in Tailwind */
+}
+
+.dark .border-gray-200 {
+  @apply border-gray-700;
+}
+
+.dark .border-gray-300 {
+  @apply border-gray-600;
+}
+
+.dark .hover\:bg-gray-50:hover {
+  @apply hover:bg-gray-700;
+}
+
+.dark .bg-gray-100 {
+  @apply bg-gray-700;
+}
+
+.dark .bg-gray-50 {
+  @apply bg-gray-800;
+}
+
+/* Confetti animation for matches */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #FBBF24;
+  opacity: 0;
+}
+
+.confetti.active {
+  animation: confetti-fall 4s ease-out forwards;
+}
+
+/* Sliding animations for page transitions */
+.slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* User feedback hover effects */
+button.feedback-hover,
+a.feedback-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+button.feedback-hover:after,
+a.feedback-hover:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+button.feedback-hover:hover:after,
+a.feedback-hover:hover:after {
+  opacity: 1;
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: relative;
+}
+
+.tooltip:before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+}
+
+.tooltip:after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+}
+
+.tooltip:hover:before, 
+.tooltip:hover:after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }

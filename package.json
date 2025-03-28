@@ -1,28 +1,42 @@
 {
-  "name": "dating-app-frontend",
-  "version": "0.1.0",
+  "name": "malayali-match",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "https://akhil-vj.github.io/Dating_App_Frontend",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/akhil-vj/Dating_App_Frontend.git"
-  },
   "dependencies": {
-    "autoprefixer": "^10.4.14",
-    "lucide-react": "^0.268.0",
-    "postcss": "^8.4.21",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "date-fns": "^2.30.0",
+    "lucide-react": "^0.241.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.2",
-    "react-scripts": "^5.0.1",
-    "tailwindcss": "^3.3.3"
+    "react-router-dom": "^6.11.2",
+    "react-scripts": "5.0.1",
+    "swiper": "^9.3.2",
+    "web-vitals": "^2.1.4",
+    "workbox-background-sync": "^6.5.4",
+    "workbox-broadcast-update": "^6.5.4",
+    "workbox-cacheable-response": "^6.5.4",
+    "workbox-core": "^6.5.4",
+    "workbox-expiration": "^6.5.4",
+    "workbox-google-analytics": "^6.5.4",
+    "workbox-navigation-preload": "^6.5.4",
+    "workbox-precaching": "^6.5.4",
+    "workbox-range-requests": "^6.5.4",
+    "workbox-routing": "^6.5.4",
+    "workbox-strategies": "^6.5.4",
+    "workbox-streams": "^6.5.4"
   },
   "scripts": {
-    "start": "set \"BROWSER=none\" && set \"NODE_OPTIONS=--no-deprecation\" && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint:fix": "eslint --fix src/**/*.{js,jsx}",
+    "format": "prettier --write src/**/*.{js,jsx,json,css,md}",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +57,28 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "postcss": "^8.4.23",
+    "prettier": "^2.8.8",
+    "source-map-explorer": "^2.5.3",
+    "tailwindcss": "^3.3.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/aspect-ratio": "^0.4.2"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.{json,css,md}": [
+      "prettier --write"
+    ]
   }
 }

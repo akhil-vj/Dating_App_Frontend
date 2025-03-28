@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Malayali Match",
+  "name": "Malayali Match - Find Your Perfect Match",
   "icons": [
     {
       "src": "favicon.ico",
@@ -16,10 +16,45 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "maskable_icon.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#FACC15",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "description": "Connect with compatible singles in Kerala",
+  "categories": ["dating", "social", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "screenshot1.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "screenshot2.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Discover",
+      "url": "/#discover",
+      "icons": [{ "src": "shortcut-discover.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Messages",
+      "url": "/#messages",
+      "icons": [{ "src": "shortcut-messages.png", "sizes": "96x96" }]
+    }
+  ]
 }

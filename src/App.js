@@ -1,218 +1,149 @@
-import React, { useState } from 'react';
-import { 
-  Heart, 
-  MessageCircle, 
-  User, 
-  Star, 
-  X 
-} from 'lucide-react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from './hooks/useAuth';
+import LoginScreen from './components/LoginScreen';
+import RegisterScreen from './components/RegisterScreen';
+import NotFoundScreen from './components/NotFoundScreen';
+import ForgotPasswordScreen from './components/ForgotPasswordScreen';
+import ResetPasswordScreen from './components/ResetPasswordScreen';
+import ProfileCompletionScreen from './components/ProfileCompletionScreen';
+import GenderPreferenceScreen from './components/GenderPreferenceScreen';
+import { FullPageLoader } from './components/LoadingIndicator';
 
-// Simulated profile data
-const sampleProfiles = [
-  {
-    id: 1,
-    name: 'Jenifer',
-    age: 22,
-    college: 'Pazhasiraja college, 2025',
-    location: 'Wayanad',
-    religion: 'Christian',
-    image: '/api/placeholder/400/400',
-    bio: 'Ente favourite spot'
+// Protected route component that checks authentication
+const ProtectedRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+  
+  // Show loading state while checking auth
+  if (loading) {
+    return <FullPageLoader />;
   }
-];
-
-const ArikeDatingApp = () => {
-  const [currentScreen, setCurrentScreen] = useState('discover');
-  const [currentProfileIndex] = useState(0);
-
-  const renderDiscoverScreen = () => {
-    const profile = sampleProfiles[currentProfileIndex];
-    
-    return (
-      <div className="relative h-full">
-        {/* Profile Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url(${profile.image})`,
-            filter: 'brightness(0.9)'
-          }}
-        />
-        
-        {/* Profile Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-          <div className="flex justify-between items-center">
-            <div>
-              <div className="flex items-center space-x-2">
-                <h2 className="text-2xl font-bold">{profile.name} {profile.age}</h2>
-                <span className="bg-yellow-500 text-white px-2 py-1 rounded-full text-xs">
-                  Verified
-                </span>
-              </div>
-              <p>{profile.college}</p>
-              <div className="flex items-center space-x-2 mt-2">
-                <span>📍 {profile.location}</span>
-                <span>• {profile.religion}</span>
-              </div>
-              <p className="mt-2 italic">"{profile.bio}"</p>
-            </div>
-            <button className="bg-yellow-500 p-2 rounded-full">
-              <MessageCircle color="white" />
-            </button>
-          </div>
-          
-          {/* Swipe Buttons */}
-          <div className="flex justify-center space-x-8 mt-4 pb-4">
-            <button 
-              className="bg-white/20 p-4 rounded-full backdrop-blur-sm"
-              onClick={() => handleSwipe(false)}
-            >
-              <X color="white" size={32} />
-            </button>
-            <button 
-              className="bg-white/20 p-4 rounded-full backdrop-blur-sm"
-              onClick={() => handleSwipe(true)}
-            >
-              <Heart color="white" size={32} />
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const renderNotesScreen = () => (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Notes</h1>
-      <div className="bg-gray-100 p-4 rounded-lg text-center">
-        <div className="flex justify-center mb-4">
-          <img 
-            src="/api/placeholder/100/100" 
-            alt="Notes Icon" 
-            className="w-16 h-16"
-          />
-        </div>
-        <p>Notes sent to you will be shown here</p>
-      </div>
-      <div className="mt-4 bg-white shadow rounded-lg p-4">
-        <h2 className="text-lg font-semibold">Interested in you</h2>
-        <p className="text-gray-500">Premium members can see all their likes</p>
-        <button className="bg-yellow-500 text-white px-4 py-2 rounded mt-2">
-          Upgrade
-        </button>
-      </div>
-    </div>
-  );
-
-  const renderMatchesScreen = () => (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Matches</h1>
-      <div className="bg-gray-100 p-4 rounded-lg text-center">
-        <div className="flex justify-center mb-4">
-          <img 
-            src="/api/placeholder/100/100" 
-            alt="Matches Icon" 
-            className="w-16 h-16"
-          />
-        </div>
-        <p>You don't have any matches yet</p>
-        <p className="text-gray-500 mt-2">Keep swiping to find your perfect match!</p>
-      </div>
-    </div>
-  );
-
-  const renderProfileScreen = () => (
-    <div className="p-4">
-      <div className="flex flex-col items-center">
-        <img 
-          src="/api/placeholder/150/150" 
-          alt="Profile" 
-          className="rounded-full w-32 h-32 object-cover"
-        />
-        <div className="flex items-center mt-2">
-          <h2 className="text-xl font-bold mr-2">Akhil</h2>
-          <span className="text-blue-500">✓</span>
-        </div>
-        <p className="text-gray-500">55% profile complete</p>
-      </div>
-
-      <div className="mt-6 space-y-4">
-        <div className="flex justify-between items-center bg-gray-100 p-3 rounded-lg">
-          <div className="flex items-center">
-            <span className="mr-3">✏️</span>
-            <span>Edit Profile</span>
-          </div>
-          <span className="text-red-500">!</span>
-        </div>
-        
-        {[
-          'Preferences', 
-          'Your Likes', 
-          'Recent Passes', 
-          'Instagram', 
-          'Help Center'
-        ].map((item) => (
-          <div 
-            key={item} 
-            className="flex justify-between items-center bg-gray-100 p-3 rounded-lg"
-          >
-            <span>{item}</span>
-            <span>➡️</span>
-          </div>
-        ))}
-
-        <div className="bg-gradient-to-r from-orange-500 to-yellow-500 p-4 rounded-lg text-white text-center">
-          <span className="text-white font-bold">arike Select</span>
-        </div>
-      </div>
-    </div>
-  );
-
-  const handleSwipe = (like) => {
-    // Implement swipe logic
-    console.log(like ? 'Liked' : 'Passed');
-  };
-
-  const renderBottomNavigation = () => (
-    <div className="fixed bottom-0 left-0 right-0 bg-white flex justify-around p-3 border-t">
-      <button 
-        className={`${currentScreen === 'discover' ? 'text-yellow-500' : 'text-gray-500'}`}
-        onClick={() => setCurrentScreen('discover')}
-      >
-        <Star />
-      </button>
-      <button 
-        className={`${currentScreen === 'notes' ? 'text-yellow-500' : 'text-gray-500'}`}
-        onClick={() => setCurrentScreen('notes')}
-      >
-        <MessageCircle />
-      </button>
-      <button 
-        className={`${currentScreen === 'matches' ? 'text-yellow-500' : 'text-gray-500'}`}
-        onClick={() => setCurrentScreen('matches')}
-      >
-        <Heart />
-      </button>
-      <button 
-        className={`${currentScreen === 'profile' ? 'text-yellow-500' : 'text-gray-500'}`}
-        onClick={() => setCurrentScreen('profile')}
-      >
-        <User />
-      </button>
-    </div>
-  );
-
-  return (
-    <div className="h-screen flex flex-col">
-      <div className="flex-grow relative">
-        {currentScreen === 'discover' && renderDiscoverScreen()}
-        {currentScreen === 'notes' && renderNotesScreen()}
-        {currentScreen === 'matches' && renderMatchesScreen()}
-        {currentScreen === 'profile' && renderProfileScreen()}
-      </div>
-      {renderBottomNavigation()}
-    </div>
-  );
+  
+  // Redirect to login if not authenticated
+  if (!user) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  
+  // Redirect to profile completion if needed
+  if (!user.profileComplete && location.pathname !== '/complete-profile') {
+    return <Navigate to="/complete-profile" state={{ from: location }} replace />;
+  }
+  
+  // Redirect to gender preference selection if needed
+  if (user.profileComplete && user.genderPreference === null && location.pathname !== '/gender-preference') {
+    return <Navigate to="/gender-preference" state={{ from: location }} replace />;
+  }
+  
+  // Render children if authenticated, profile is complete, and gender preference is set
+  return children;
 };
 
-export default ArikeDatingApp;
+// Public route that redirects to main page if already authenticated
+const PublicRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  
+  // Show loading state while checking auth
+  if (loading) {
+    return <FullPageLoader />;
+  }
+  
+  // Redirect to appropriate screen if already authenticated
+  if (user) {
+    if (!user.profileComplete) {
+      return <Navigate to="/complete-profile" replace />;
+    } else if (user.genderPreference === null) {
+      return <Navigate to="/gender-preference" replace />;
+    } else {
+      return <Navigate to="/" replace />;
+    }
+  }
+  
+  // Render children if not authenticated
+  return children;
+};
+
+// Profile completion route
+const ProfileCompletionRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+  
+  if (loading) return <FullPageLoader />;
+  if (!user) return <Navigate to="/login" state={{ from: location }} replace />;
+  if (user.profileComplete) {
+    if (user.genderPreference === null) {
+      return <Navigate to="/gender-preference" replace />;
+    } 
+    return <Navigate to="/" replace />;
+  }
+  
+  return children;
+};
+
+// Gender preference route
+const GenderPreferenceRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+  
+  if (loading) return <FullPageLoader />;
+  if (!user) return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!user.profileComplete) return <Navigate to="/complete-profile" replace />;
+  if (user.genderPreference !== null) return <Navigate to="/" replace />;
+  
+  return children;
+};
+
+function App() {
+  // App component initialization code here
+
+  // If you need location or recommendations data, move the logic here inside the component
+  // For example:
+  // const [recommendations, setRecommendations] = useState([]);
+  // 
+  // useEffect(() => {
+  //   // Initialize app data
+  //   const initializeApp = async () => {
+  //     // Your initialization code here
+  //   };
+  //   
+  //   initializeApp();
+  // }, []);
+
+  return (
+    <Router>
+      <Routes>
+        {/* Public routes - accessible without authentication */}
+        <Route path="/login" element={<PublicRoute><LoginScreen /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><RegisterScreen /></PublicRoute>} />
+        <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordScreen /></PublicRoute>} />
+        <Route path="/reset-password" element={<PublicRoute><ResetPasswordScreen /></PublicRoute>} />
+        
+        {/* Profile completion route - requires authentication but not complete profile */}
+        <Route path="/complete-profile" element={
+          <ProfileCompletionRoute><ProfileCompletionScreen /></ProfileCompletionRoute>
+        } />
+        
+        {/* Gender preference route - requires authentication and complete profile */}
+        <Route path="/gender-preference" element={
+          <GenderPreferenceRoute><GenderPreferenceScreen /></GenderPreferenceRoute>
+        } />
+        
+        {/* Protected routes - require authentication, complete profile, and gender preference */}
+        <Route path="/" element={
+          <ProtectedRoute>
+            <div className="app-container">
+              {/* Your main app content */}
+              <h1 className="text-2xl font-bold text-center py-4">Malayali Match</h1>
+              {/* Include main app components here */}
+            </div>
+          </ProtectedRoute>
+        } />
+        
+        {/* Catch-all route for 404s */}
+        <Route path="*" element={<NotFoundScreen />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
