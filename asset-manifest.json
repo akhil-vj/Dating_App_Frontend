@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/Dating_App_Frontend/static/css/main.2dca0717.css",
-    "main.js": "/Dating_App_Frontend/static/js/main.b82865f5.js",
+    "main.css": "/Dating_App_Frontend/static/css/main.34accaf4.css",
+    "main.js": "/Dating_App_Frontend/static/js/main.c68bea47.js",
+    "static/js/453.d8aa4d85.chunk.js": "/Dating_App_Frontend/static/js/453.d8aa4d85.chunk.js",
     "index.html": "/Dating_App_Frontend/index.html",
-    "main.2dca0717.css.map": "/Dating_App_Frontend/static/css/main.2dca0717.css.map",
-    "main.b82865f5.js.map": "/Dating_App_Frontend/static/js/main.b82865f5.js.map"
+    "main.34accaf4.css.map": "/Dating_App_Frontend/static/css/main.34accaf4.css.map",
+    "main.c68bea47.js.map": "/Dating_App_Frontend/static/js/main.c68bea47.js.map",
+    "453.d8aa4d85.chunk.js.map": "/Dating_App_Frontend/static/js/453.d8aa4d85.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2dca0717.css",
-    "static/js/main.b82865f5.js"
+    "static/css/main.34accaf4.css",
+    "static/js/main.c68bea47.js"
   ]
 }
